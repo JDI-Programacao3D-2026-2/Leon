@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
     private Vector3 direction;
     private ShootPool Shootpool;
 
-    void Awake()
+    void OnEnable()
     {
         Invoke("SpawnTime", 5f);
     }
