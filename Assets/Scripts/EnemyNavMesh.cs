@@ -22,6 +22,16 @@ public class EnemyNavMesh : MonoBehaviour
     }
     void Update()
     {
+        FiniteStateMachine();
+    }
+
+    public void ChangeState(EnemyState newState)
+    {
+        currentState = newState;
+    }
+
+    void FiniteStateMachine()
+    {
         switch (currentState)
         {
             case EnemyState.Pursuit:
@@ -36,7 +46,7 @@ public class EnemyNavMesh : MonoBehaviour
                 break;
         }
 
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 10f, layerMask))
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 15f, layerMask))
         {
             ChangeState(EnemyState.Pursuit);
         }
@@ -65,8 +75,4 @@ public class EnemyNavMesh : MonoBehaviour
         }
     }
 
-    public void ChangeState(EnemyState newState)
-    {
-        currentState = newState;
-    }
 }

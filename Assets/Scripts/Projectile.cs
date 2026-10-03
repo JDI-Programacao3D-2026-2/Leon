@@ -23,6 +23,7 @@ public class Projectile : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        CancelInvoke("SpawnTime");
         Shootpool.ReturnProjectile(gameObject);
     }
 
