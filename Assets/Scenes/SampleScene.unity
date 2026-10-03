@@ -451,11 +451,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyNavMesh
   player: {fileID: 1594301548}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 8
   waypoints:
   - {fileID: 1900305397}
   - {fileID: 244348604}
   - {fileID: 1653684978}
   - {fileID: 1838786177}
+  currentState: 0
 --- !u!114 &369286313
 MonoBehaviour:
   m_ObjectHideFlags: 0
