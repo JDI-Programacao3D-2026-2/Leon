@@ -11,7 +11,8 @@ public class EnemyNavMesh : MonoBehaviour
     public enum EnemyState
     {
         WayPatrol,
-        Pursuit
+        Pursuit,
+        Flee
     }
 
     public EnemyState currentState = EnemyState.WayPatrol;
@@ -42,6 +43,10 @@ public class EnemyNavMesh : MonoBehaviour
                 WayPatrol();
                 break;
 
+            case EnemyState.Flee:
+                Flee();
+                break;
+
             default:
                 break;
         }
@@ -58,6 +63,10 @@ public class EnemyNavMesh : MonoBehaviour
         if (distanceToPlayer > detectionRange)
         {
             ChangeState(EnemyState.WayPatrol);
+        }
+        else if (distanceToPlayer < 5f)
+        {
+            ChangeState(EnemyState.Flee);
         }
     }
 
@@ -94,6 +103,15 @@ public class EnemyNavMesh : MonoBehaviour
                 inimigo.ChangeState(EnemyState.Pursuit);
             }
         }
+    }
+
+    void Flee()
+    {
+        if (player == null) return;
+        agent.stoppingDistance = 0f;
+        Vector3 awayDirection = (transform.position - player.position).normalized * 10f;
+        awayDirection+= transform.position;
+        agent.SetDestination(awayDirection);
     }
 
 }
