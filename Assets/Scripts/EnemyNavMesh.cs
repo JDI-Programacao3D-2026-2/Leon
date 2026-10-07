@@ -7,10 +7,10 @@ public class EnemyNavMesh : MonoBehaviour
     public LayerMask layerMask;
     private NavMeshAgent agent;
     public Transform[] waypoints;
+    public float detectionRange = 10f;
     public enum EnemyState
     {
         WayPatrol,
-        RandomPatrol,
         Pursuit
     }
 
@@ -45,15 +45,6 @@ public class EnemyNavMesh : MonoBehaviour
             default:
                 break;
         }
-
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 15f, layerMask))
-        {
-            ChangeState(EnemyState.Pursuit);
-        }
-        else
-        {
-            ChangeState(EnemyState.WayPatrol);
-        }
     }
 
     void Pursuit()
@@ -62,6 +53,12 @@ public class EnemyNavMesh : MonoBehaviour
         agent.stoppingDistance = 6f;
         agent.SetDestination(player.position);
         transform.LookAt(player);
+
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        if (distanceToPlayer > detectionRange)
+        {
+            ChangeState(EnemyState.WayPatrol);
+        }
     }
 
     void WayPatrol()
@@ -72,6 +69,30 @@ public class EnemyNavMesh : MonoBehaviour
         {
             int randomIndex = Random.Range(0, waypoints.Length);
             agent.SetDestination(waypoints[randomIndex].position);
+        }
+        SearchPlayer();
+    }
+
+    void SearchPlayer()
+    {
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 15f, layerMask))
+        {
+            ChangeState(EnemyState.Pursuit);
+            CallBackup();
+        }
+    }
+
+    void CallBackup()
+    {
+        EnemyNavMesh[] todosInimigos = FindObjectsByType<EnemyNavMesh>();
+
+        foreach (EnemyNavMesh inimigo in todosInimigos)
+        {
+            float distancia = Vector3.Distance(transform.position, inimigo.transform.position);
+            if (inimigo != this && distancia <= detectionRange)
+            {
+                inimigo.ChangeState(EnemyState.Pursuit);
+            }
         }
     }
 
