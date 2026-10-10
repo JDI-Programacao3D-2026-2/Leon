@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -44,7 +45,7 @@ public class EnemyNavMesh : MonoBehaviour
                 break;
 
             case EnemyState.Flee:
-                Flee();
+                StartCoroutine(FleeRoutine());
                 break;
 
             default:
@@ -105,13 +106,23 @@ public class EnemyNavMesh : MonoBehaviour
         }
     }
 
-    void Flee()
+    IEnumerator FleeRoutine()
     {
-        if (player == null) return;
         agent.stoppingDistance = 0f;
         Vector3 awayDirection = (transform.position - player.position).normalized * 10f;
         awayDirection+= transform.position;
         agent.SetDestination(awayDirection);
+
+        while (true)
+        {
+            bool isPlayerInRange = Vector3.Distance(transform.position, player.position) < 5f;
+            if (!isPlayerInRange)
+            {
+                ChangeState(EnemyState.Pursuit);
+                yield break;
+            }
+            yield return null;
+        }
     }
 
 }
