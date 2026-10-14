@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float speed = 10f;
+    public float speed = 25f;
+    public float damage = 25f;
     private Vector3 direction;
     private ShootPool Shootpool;
 
@@ -23,6 +24,11 @@ public class Projectile : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        EnemyHealth enemy = collision.gameObject.GetComponent<EnemyHealth>();
+        if (enemy != null)
+        {
+            enemy.TakeDamage(damage);
+        }
         CancelInvoke("SpawnTime");
         Shootpool.ReturnProjectile(gameObject);
     }
