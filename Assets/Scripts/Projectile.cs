@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float speed = 25f;
+    public float speed = 30f;
     public float damage = 25f;
     private Vector3 direction;
     private ShootPool Shootpool;
