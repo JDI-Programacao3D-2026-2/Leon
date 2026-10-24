@@ -147,6 +147,14 @@ PrefabInstance:
       propertyPath: 'waypoints.Array.data[3]'
       value: 
       objectReference: {fileID: 1838786177}
+    - target: {fileID: 4430301414549882360, guid: d4d78895fe7b8f64cae01b67717bd97e, type: 3}
+      propertyPath: playerStats
+      value: 
+      objectReference: {fileID: 1594301552}
+    - target: {fileID: 4575169240995885424, guid: d4d78895fe7b8f64cae01b67717bd97e, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1052727031}
     - target: {fileID: 4886436442917891570, guid: d4d78895fe7b8f64cae01b67717bd97e, type: 3}
       propertyPath: m_Name
       value: Enemy (1)
@@ -510,7 +518,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 108.399994, y: -80}
+  m_AnchoredPosition: {x: 108.39996, y: -80}
   m_SizeDelta: {x: 800, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &322129087
@@ -1156,7 +1164,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &830133675
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1409,6 +1417,14 @@ PrefabInstance:
       propertyPath: 'waypoints.Array.data[3]'
       value: 
       objectReference: {fileID: 1838786177}
+    - target: {fileID: 4430301414549882360, guid: d4d78895fe7b8f64cae01b67717bd97e, type: 3}
+      propertyPath: playerStats
+      value: 
+      objectReference: {fileID: 1594301552}
+    - target: {fileID: 4575169240995885424, guid: d4d78895fe7b8f64cae01b67717bd97e, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1052727031}
     - target: {fileID: 4886436442917891570, guid: d4d78895fe7b8f64cae01b67717bd97e, type: 3}
       propertyPath: m_Name
       value: Enemy (2)
@@ -1524,6 +1540,9 @@ MonoBehaviour:
   tabPanel: {fileID: 830133674}
   kills: 0
   deaths: 0
+  killsText: {fileID: 289322019}
+  deathsText: {fileID: 2082849895}
+  playerNameText: {fileID: 322129087}
 --- !u!4 &1052727032
 Transform:
   m_ObjectHideFlags: 0
@@ -1573,7 +1592,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 108.399994, y: -25.000046}
+  m_AnchoredPosition: {x: 108.39996, y: -25.00003}
   m_SizeDelta: {x: 800, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1091569713
@@ -2377,6 +2396,7 @@ GameObject:
   - component: {fileID: 1594301550}
   - component: {fileID: 1594301549}
   - component: {fileID: 1594301551}
+  - component: {fileID: 1594301552}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -2561,6 +2581,23 @@ MonoBehaviour:
   cd_1: 5
   skill_Image:
   - {fileID: 1608052593}
+--- !u!114 &1594301552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594301543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d9c4511ca73e4e44bee0600314bc9de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterStats
+  characterName: Leonzito
+  team: 0
+  kills: 0
+  deaths: 0
+  gameManager: {fileID: 1052727031}
 --- !u!1 &1608052591
 GameObject:
   m_ObjectHideFlags: 0
@@ -3202,6 +3239,14 @@ PrefabInstance:
       propertyPath: 'waypoints.Array.data[3]'
       value: 
       objectReference: {fileID: 1838786177}
+    - target: {fileID: 4430301414549882360, guid: d4d78895fe7b8f64cae01b67717bd97e, type: 3}
+      propertyPath: playerStats
+      value: 
+      objectReference: {fileID: 1594301552}
+    - target: {fileID: 4575169240995885424, guid: d4d78895fe7b8f64cae01b67717bd97e, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1052727031}
     - target: {fileID: 4886436442917891570, guid: d4d78895fe7b8f64cae01b67717bd97e, type: 3}
       propertyPath: m_Name
       value: Enemy

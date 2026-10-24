@@ -10,22 +10,25 @@ public class GameManager : MonoBehaviour
 
     [Header("Tab Stats")]
     public GameObject tabPanel;
-    public int kills;
-    public int deaths;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public int kills = 0;
+    public int deaths = 0;
+    public TextMeshProUGUI killsText;
+    public TextMeshProUGUI deathsText;
+    public TextMeshProUGUI playerNameText;
+    
     void Start()
     {
         stopTimer = false;
         startTime = 5f;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!stopTimer)
         {
             StartCountdown();
         }
+        ScorePanel();
     }
 
     void StartCountdown()
@@ -47,5 +50,30 @@ public class GameManager : MonoBehaviour
         gameStartText.text = "";
         stopTimer = true;
         startTime = 5f;
+    }
+
+    void ScorePanel()
+    {
+        if (Keyboard.current.tabKey.wasPressedThisFrame)
+        {
+            tabPanel.SetActive(!tabPanel.activeSelf);
+        }
+    }
+
+    public void UpdateKills()
+    {
+        kills++;
+        killsText.text = kills.ToString();
+    }
+
+    public void UpdateDeaths()
+    {
+        deaths++;
+        deathsText.text = deaths.ToString();
+    }
+
+    public void PlayerName(string name)
+    {
+        playerNameText.text = name;
     }
 }
