@@ -5,7 +5,7 @@ public class Projectile : MonoBehaviour
     public float speed = 30f;
     public float damage = 25f;
     private Vector3 direction;
-    private ShootPool Shootpool;
+    private ShootPool shootPool;
 
     void OnEnable()
     {
@@ -14,7 +14,7 @@ public class Projectile : MonoBehaviour
     public void StartProjectile(Vector3 direction, ShootPool shooter)
     {
         this.direction = direction;
-        this.Shootpool = shooter;
+        this.shootPool = shooter;
     }
 
     void Update()
@@ -24,17 +24,17 @@ public class Projectile : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        EnemyHealth enemy = collision.gameObject.GetComponent<EnemyHealth>();
+        HealthManager enemy = collision.gameObject.GetComponent<HealthManager>();
         if (enemy != null)
         {
             enemy.TakeDamage(damage);
         }
         CancelInvoke("SpawnTime");
-        Shootpool.ReturnProjectile(gameObject);
+        shootPool.ReturnProjectile(gameObject);
     }
 
     void SpawnTime()
     {
-        Shootpool.ReturnProjectile(gameObject);
+        shootPool.ReturnProjectile(gameObject);
     }
 }

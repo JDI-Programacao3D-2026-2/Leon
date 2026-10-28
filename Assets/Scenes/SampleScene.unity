@@ -1710,7 +1710,7 @@ GameObject:
   - component: {fileID: 1102150334}
   m_Layer: 6
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2397,9 +2397,10 @@ GameObject:
   - component: {fileID: 1594301549}
   - component: {fileID: 1594301551}
   - component: {fileID: 1594301552}
+  - component: {fileID: 1594301553}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2594,10 +2595,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterStats
   characterName: Leonzito
-  team: 0
   kills: 0
   deaths: 0
+  team: 0
+  characterType: 0
+  enemyType: 0
   gameManager: {fileID: 1052727031}
+  healthManager: {fileID: 0}
+  playerMove: {fileID: 0}
+--- !u!114 &1594301553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594301543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b2e4d047a72f34da49b86ee4540d8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthManager
+  maxHealth: 100
+  otherStats: {fileID: 0}
+  selfStats: {fileID: 0}
+  isPlayer: 0
 --- !u!1 &1608052591
 GameObject:
   m_ObjectHideFlags: 0
